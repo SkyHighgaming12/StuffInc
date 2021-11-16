@@ -20,7 +20,7 @@ namespace StuffInc.Controllers
         public async Task<IActionResult> Index()
         {
             var allProducts = await _context.Suppliers.ToListAsync();
-            return View();
+            return View(allProducts);
         }
     }
 }
