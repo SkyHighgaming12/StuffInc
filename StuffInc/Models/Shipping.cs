@@ -14,5 +14,8 @@ namespace StuffInc.Models
         public string ImageURL { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        //relationships
+        public List<Shipping_Product> Shipping_Products { get; set; }
     }
 }
