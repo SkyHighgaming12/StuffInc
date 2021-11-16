@@ -11,8 +11,11 @@ namespace StuffInc.Models
         [Key]
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        [Display(Name = "Warranty")]
         public string ImageURL { get; set; }
+        [Display(Name = "Warranty Length")]
+        public string Name { get; set; }
+        [Display(Name = "Warranty Description")]
         public string Description { get; set; }
 
         //Relationshis

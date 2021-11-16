@@ -20,7 +20,7 @@ namespace StuffInc.Controllers
         public async Task<IActionResult> Index()
         {
             var allWarranties = await  _context.Warranties.ToListAsync();
-            return View();
+            return View(allWarranties);
         }
     }
 }
