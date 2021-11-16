@@ -9,6 +9,8 @@ namespace StuffInc.Data
     {
         Food = 1,
         Clothing,
-        Electronics
+        Electronics,
+        Cars,
+        Toys
     }
 }
