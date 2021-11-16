@@ -19,7 +19,7 @@ namespace StuffInc.Controllers
         public IActionResult Index()
         {
             var data = _context.Shippings.ToList();
-            return View();
+            return View(data);
         }
     }
 }

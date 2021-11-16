@@ -10,9 +10,11 @@ namespace StuffInc.Models
     {
         [Key]
         public int Id { get; set; }
-
+        [Display(Name = "Shipping Logo")]
         public string ImageURL { get; set; }
+        [Display(Name = "Shipping Type")]
         public string Name { get; set; }
+        [Display(Name = "Shipping Description")]
         public string Description { get; set; }
 
         //relationships
