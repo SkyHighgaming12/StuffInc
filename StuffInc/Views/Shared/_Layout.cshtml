@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">StuffInc</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="https://skyhighstudent.com/images/stuffincLogo.jpg" alt="stuffInc Logo" style="width: 75%;"/></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,9 +23,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-controller="Product" asp-action="Index"><i class="bi bi-box"></i> Products</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-gear"></i>Management
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="Supplier" asp-action="Index"><i class="bi bi-building"> Suppliers</i></a>
+                                <a class="dropdown-item" asp-controller="Warranty" asp-action="Index"><i class="bi bi-chat-right-text"> Warrenties</i></a>
+                                <a class="dropdown-item" asp-controller="Shipping" asp-action="Index"><i class="bi bi-truck"> Shipping Types</i></a>
+                            </div>
+
                         </li>
                     </ul>
+                    <form class="form-inline my-2 my-lg-0" asp-controller="Product" asp-action="Filter" style="padding-right: 25px;">
+                        <input name="searchString" type="text" class="form-control" placeholder="Search for an Item..." />
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -38,7 +53,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container-fluid">
-            &copy; 2021 - StuffInc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - StuffInc
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
