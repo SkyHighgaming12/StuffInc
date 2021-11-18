@@ -45,6 +45,47 @@ namespace StuffInc.Controllers
 
             return View(supplierDetails);
         }
+
+        // supplier/Edit/1
+        public async Task<IActionResult> Edit(int id)
+        {
+            var warrantyDetails = await _service.GetByIdAsync(id);
+            if (warrantyDetails == null) return View("NotFound");
+            return View(warrantyDetails);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Logo,Name,Description")] Supplier supplier)
+        {
+
+            if (!ModelState.IsValid) return View(supplier);
+
+            if (id == supplier.Id)
+            {
+                await _service.UpdateAsync(id, supplier);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(supplier);
+        }
+
+
+
+        // warranty/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var supplierDetails = await _service.GetByIdAsync(id);
+            if (supplierDetails == null) return View("NotFound");
+            return View(supplierDetails);
+        }
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var warrantyDetails = await _service.GetByIdAsync(id);
+            if (warrantyDetails == null) return View("NotFound");
+
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 
     
