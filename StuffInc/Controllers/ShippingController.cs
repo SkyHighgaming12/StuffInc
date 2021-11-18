@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using StuffInc.Models;
 
 namespace StuffInc.Controllers
 {
@@ -26,6 +27,16 @@ namespace StuffInc.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Name,ImageURL,Description")]Shipping shipping)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(shipping);
+            }
+            _service.Add(shipping);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

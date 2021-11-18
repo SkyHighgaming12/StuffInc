@@ -11,10 +11,14 @@ namespace StuffInc.Models
         [Key]
         public int Id { get; set; }
         [Display(Name = "Shipping Logo")]
+        [Required(ErrorMessage = "Logo Is Required")]
         public string ImageURL { get; set; }
         [Display(Name = "Shipping Type")]
+        [Required(ErrorMessage = "Name Is Required")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name Must be between 3 and 50 Characters")]
         public string Name { get; set; }
         [Display(Name = "Shipping Description")]
+        [Required(ErrorMessage = "Description Is Required")]
         public string Description { get; set; }
 
         //relationships

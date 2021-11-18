@@ -14,7 +14,7 @@
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group text-center">
-                        <img id="ImageURLPreview" />
+                        <img id="ImageURLPreview" style="max-width: 200px;" />
                     </div>
                     <div class="form-group">
                         <label asp-for="ImageURL" class="control-label"></label>
@@ -43,6 +43,11 @@
 
 @section scripts{ 
 <script>
+    $(document).ready(function () {
+        var output = document.getElementById('ImageURLPreview');
+        output.src = $("#ImageURL").val();
+    })
+
     $("#ImageURL").on("change", function () {
         var output = document.getElementById('ImageURLPreview');
         output.src = $(this).val();

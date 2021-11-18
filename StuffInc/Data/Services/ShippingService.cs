@@ -17,7 +17,8 @@ namespace StuffInc.Data.Services
         }
         public void Add(Shipping shipping)
         {
-            throw new NotImplementedException();
+            _context.Shippings.Add(shipping);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
