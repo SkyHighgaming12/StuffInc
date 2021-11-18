@@ -23,5 +23,14 @@ namespace StuffInc.Controllers
             var allWarranties = await _service.GetAllAsync();
             return View(allWarranties);
         }
+
+        // warranty/details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var warrantyDetails = await _service.GetByIdAsync(id);
+            if (warrantyDetails == null) return View("NotFound");
+
+            return View(warrantyDetails);
+        }
     }
 }
