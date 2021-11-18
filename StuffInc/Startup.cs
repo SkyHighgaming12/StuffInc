@@ -40,6 +40,7 @@ namespace StuffInc
             services.AddScoped<IShippingsService, ShippingService>();
             services.AddScoped<IWarrantyService, WarrantyService>();
             services.AddScoped<ISuppliersService, SuppliersService>();
+            services.AddScoped<IProductsService, ProductsService>();
 
             services.AddControllersWithViews();
         }

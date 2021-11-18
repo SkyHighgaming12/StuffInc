@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StuffInc.Data;
+using StuffInc.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,16 @@ namespace StuffInc.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IProductsService _service;
 
-        public ProductController(AppDbContext context)
+        public ProductController(IProductsService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public async Task<IActionResult> Index()
         {
-            var allProducts = await _context.Products.Include(n => n.Supplier).OrderBy(n => n.Name).ToListAsync();
+            var allProducts = await _service.GetAllAsync(n => n.Supplier);
             return View(allProducts);
         }
     }
