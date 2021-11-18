@@ -47,5 +47,27 @@ namespace StuffInc.Controllers
             await _service.AddAsync(warranty);
             return RedirectToAction(nameof(Index));
         }
+
+
+        // warranty/Edit/1
+        public async Task<IActionResult> Edit(int id)
+        {
+            var warrantyDetails = await _service.GetByIdAsync(id);
+            if (warrantyDetails == null) return View("NotFound");
+            return View(warrantyDetails);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ImageURL,Name,Description")] Warranty warranty)
+        {
+
+            if (!ModelState.IsValid) return View(warranty);
+
+            if(id == warranty.Id)
+            {
+                await _service.UpdateAsync(id, warranty);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(warranty);
+        }
     }
 }
