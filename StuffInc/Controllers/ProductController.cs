@@ -31,5 +31,11 @@ namespace StuffInc.Controllers
             var productDetail = await _service.GetProductByIdAsync(id);
             return View(productDetail);
         }
+        public IActionResult Create()
+        {
+            
+
+            return View();
+        }
     }
 }

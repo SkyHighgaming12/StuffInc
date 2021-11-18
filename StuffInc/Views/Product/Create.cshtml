@@ -23,6 +23,11 @@
                                 <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                
+                                <input asp-for="Added" type="hidden" value="@DateTime.Now" class="form-control" />
+                                
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="Price" class="control-label"></label>
                                 <input asp-for="Price" class="form-control" />
                                 <span asp-validation-for="Price" class="text-danger"></span>
@@ -34,7 +39,7 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="ProductCategory" class="control-label"></label>
-                                <section asp-for="ProductCategory" class="form-control"></section>
+                                <select asp-for="ProductCategory" class="form-control"></select>
                                 <span asp-validation-for="ProductCategory" class="text-danger"></span>
                             </div>
                         </div>
@@ -42,17 +47,17 @@
 
                             <div class="form-group">
                                 <label asp-for="SupplierId" class="control-label"></label>
-                                <section asp-for="SupplierId" class="form-control"></section>
+                                <select asp-for="SupplierId" class="form-control"></select>
                                 <span asp-validation-for="SupplierId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="WarrantyId" class="control-label"></label>
-                                <section asp-for="WarrantyId" class="form-control"></section>
+                                <select asp-for="WarrantyId" class="form-control"></select>
                                 <span asp-validation-for="WarrantyId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="ShippingIds" class="control-label"></label>
-                                <section asp-for="ShippingIds" class="form-control" multiple></section>
+                                <select asp-for="ShippingIds" class="form-control" multiple></select>
                                 <span asp-validation-for="ShippingIds" class="text-danger"></span>
                             </div>
 
@@ -73,7 +78,7 @@
         </div>
     </div>
 </div>
-@section ScriptsPartial{ 
+@section Scripts{ 
     <script>
         $(document).ready(function () {
             var output = document.getElementById('ImageURLPreview');
