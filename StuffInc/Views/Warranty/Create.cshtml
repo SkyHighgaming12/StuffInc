@@ -1,0 +1,56 @@
+﻿@model Warranty
+
+@{ 
+    ViewData["Title"] = "Create a new Warranty";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Add a New Warranty</h4>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group text-center">
+                        <img id="ImageURLPreview" style="max-width: 200px;" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageURL" class="control-label"></label>
+                        <input asp-for="ImageURL" class="form-control" />
+                        <span asp-validation-for="ImageURL" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                    </div>
+                </form>
+            </div>
+         </div>
+     </div>
+</div>
+
+@section scripts{ 
+<script>
+    $(document).ready(function () {
+        var output = document.getElementById('ImageURLPreview');
+        output.src = $("#ImageURL").val();
+    })
+
+    $("#ImageURL").on("change", function () {
+        var output = document.getElementById('ImageURLPreview');
+        output.src = $(this).val();
+    })
+</script>
+}

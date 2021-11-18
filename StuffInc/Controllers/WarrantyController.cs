@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using StuffInc.Data;
 using StuffInc.Data.Services;
+using StuffInc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,20 @@ namespace StuffInc.Controllers
             if (warrantyDetails == null) return View("NotFound");
 
             return View(warrantyDetails);
+        }
+
+
+        // warranty/create
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("ImageURL,Name,Description")]Warranty warranty)
+        {
+            if (!ModelState.IsValid) return View(warranty);
+            await _service.AddAsync(warranty);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
