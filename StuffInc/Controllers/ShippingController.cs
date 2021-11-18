@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using StuffInc.Data;
+﻿using StuffInc.Data;
+using StuffInc.Data.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,22 @@ namespace StuffInc.Controllers
 {
     public class ShippingController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IShippingsService _service;
 
-        public ShippingController(AppDbContext context)
+        public ShippingController(IShippingsService service)
         {
-            _context = context;
+            _service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data = _context.Shippings.ToList();
+            var data = await _service.GetAll();
             return View(data);
+        }
+        //shipping/create
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StuffInc.Data;
+using StuffInc.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,16 @@ namespace StuffInc
         {
             //dbcontext config
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+
+
+
+
+
+
+
+
+            //Service Config
+            services.AddScoped<IShippingsService, ShippingService>();
 
             services.AddControllersWithViews();
         }

@@ -8,7 +8,7 @@ namespace StuffInc.Data.Services
 {
     public interface IShippingsService
     {
-        IEnumerable<Shipping> GetAll();
+        Task<IEnumerable<Shipping>> GetAll();
         Shipping GetById(int id);
         void Add(Shipping shipping);
         Shipping Update(int id, Shipping newShipping);
