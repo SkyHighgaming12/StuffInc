@@ -12,5 +12,6 @@ namespace StuffInc.Data.Services
     {
         Task<Product> GetProductByIdAsync(int id);
         Task<NewProductsDropdownsVm> GetNewMovieDropdownsValues();
+        Task AddNewProductAsync(NewProductVm data);
     }
 }

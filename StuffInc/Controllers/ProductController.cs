@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StuffInc.Data;
 using StuffInc.Data.Services;
+using StuffInc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,23 @@ namespace StuffInc.Controllers
             ViewBag.ShippingId = new SelectList(productDropdownsData.Shippings, "Id", "Name");
 
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(NewProductVm product)
+        {
+            if (!ModelState.IsValid)
+            {
+                var productDropdownsData = await _service.GetNewMovieDropdownsValues();
+
+                ViewBag.SupplierId = new SelectList(productDropdownsData.Suppliers, "Id", "Name");
+                ViewBag.WarrantyId = new SelectList(productDropdownsData.Warrenties, "Id", "Name");
+                ViewBag.ShippingId = new SelectList(productDropdownsData.Shippings, "Id", "Name");
+                return View(product);
+            }
+            await _service.AddNewProductAsync(product);
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }

@@ -17,6 +17,36 @@ namespace StuffInc.Data.Services
             _context = context;
         }
 
+        public async Task AddNewProductAsync(NewProductVm data)
+        {
+            var newProduct = new Product()
+            {
+                Name = data.Name,
+                Description = data.Description,
+                Price = data.Price,
+                SupplierId = data.SupplierId,
+                WarrantyId = data.WarrantyId,
+                Added = data.Added,
+                ImageURL = data.ImageURL,
+                ProductCategory = data.ProductCategory
+            };
+            await _context.Products.AddAsync(newProduct);
+            await _context.SaveChangesAsync();
+
+
+            foreach (var shippingId in data.ShippingIds)
+            {
+                var newShippingProduct = new Shipping_Product()
+                {
+                    ProductId = newProduct.Id,
+                    ShippingId = shippingId
+                };
+                await _context.Shipping_Products.AddAsync(newShippingProduct);
+
+            }
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<NewProductsDropdownsVm> GetNewMovieDropdownsValues()
         {
             var response = new NewProductsDropdownsVm()
