@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StuffInc.Data.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StuffInc.Models
 {
-    public class Warranty
+    public class Warranty:IEntityBase
     {
         [Key]
         public int Id { get; set; }

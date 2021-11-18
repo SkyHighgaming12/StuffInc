@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StuffInc.Data;
+using StuffInc.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,16 @@ namespace StuffInc.Controllers
 {
     public class WarrantyController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IWarrantyService _service;
 
-        public WarrantyController(AppDbContext context)
+        public WarrantyController(IWarrantyService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public async Task<IActionResult> Index()
         {
-            var allWarranties = await  _context.Warranties.ToListAsync();
+            var allWarranties = await _service.GetAllAsync();
             return View(allWarranties);
         }
     }
