@@ -39,6 +39,7 @@ namespace StuffInc
             //Service Config
             services.AddScoped<IShippingsService, ShippingService>();
             services.AddScoped<IWarrantyService, WarrantyService>();
+            services.AddScoped<ISuppliersService, SuppliersService>();
 
             services.AddControllersWithViews();
         }
