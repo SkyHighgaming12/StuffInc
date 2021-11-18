@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using StuffInc.Models;
+using StuffInc.Data.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StuffInc.Data;
-using StuffInc.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,18 @@ namespace StuffInc.Controllers
             var allSuppliers = await _service.GetAllAsync();
             return View(allSuppliers);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Logo,Name,Description")] Supplier supplier)
+        {
+            if (!ModelState.IsValid) return View(supplier);
+            await _service.AddAsync(supplier);
+            return RedirectToAction(nameof(Index));
+        }
     }
+
+    
 }
