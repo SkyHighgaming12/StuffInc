@@ -20,7 +20,7 @@ namespace StuffInc.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var data = await _service.GetAll();
+            var data = await _service.GetAllAsync();
             return View(data);
         }
         //shipping/create
@@ -35,8 +35,17 @@ namespace StuffInc.Controllers
             {
                 return View(shipping);
             }
-            _service.Add(shipping);
+            await _service.AddAsync(shipping);
             return RedirectToAction(nameof(Index));
+        }
+
+
+        //Shipping/details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var shippingDetails = await _service.GetByIdAsync(id);
+            if (shippingDetails == null) return View("Empty");
+            return View(shippingDetails);
         }
     }
 }

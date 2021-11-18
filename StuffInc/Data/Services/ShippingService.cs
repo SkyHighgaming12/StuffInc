@@ -15,10 +15,10 @@ namespace StuffInc.Data.Services
         {
             _context = context;
         }
-        public void Add(Shipping shipping)
+        public async Task AddAsync(Shipping shipping)
         {
-            _context.Shippings.Add(shipping);
-            _context.SaveChanges();
+            await _context.Shippings.AddAsync(shipping);
+            await _context.SaveChangesAsync();
         }
 
         public void Delete(int id)
@@ -26,15 +26,16 @@ namespace StuffInc.Data.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Shipping>> GetAll()
+        public async Task<IEnumerable<Shipping>> GetAllAsync()
         {
             var result = await _context.Shippings.ToListAsync();
             return result;
         }
 
-        public Shipping GetById(int id)
+        public async Task<Shipping> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Shippings.FirstOrDefaultAsync(n => n.Id == id);
+            return result;
         }
 
         public Shipping Update(int id, Shipping newShipping)

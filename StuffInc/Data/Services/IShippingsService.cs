@@ -8,9 +8,9 @@ namespace StuffInc.Data.Services
 {
     public interface IShippingsService
     {
-        Task<IEnumerable<Shipping>> GetAll();
-        Shipping GetById(int id);
-        void Add(Shipping shipping);
+        Task<IEnumerable<Shipping>> GetAllAsync();
+        Task<Shipping> GetByIdAsync(int id);
+        Task AddAsync(Shipping shipping);
         Shipping Update(int id, Shipping newShipping);
         void Delete(int id);
     }
