@@ -66,5 +66,23 @@ namespace StuffInc.Controllers
             await _service.UpdateAsync(id, shipping);
             return RedirectToAction(nameof(Index));
         }
+
+        //shipping/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var shippingDetails = await _service.GetByIdAsync(id);
+            if (shippingDetails == null) return View("NotFound");
+            return View(shippingDetails);
+        }
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var shippingDetails = await _service.GetByIdAsync(id);
+            if (shippingDetails == null) return View("NotFound");
+
+            await _service.DeleteAsync(id);
+            
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

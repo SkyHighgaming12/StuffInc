@@ -12,6 +12,6 @@ namespace StuffInc.Data.Services
         Task<Shipping> GetByIdAsync(int id);
         Task AddAsync(Shipping shipping);
         Task<Shipping> UpdateAsync(int id, Shipping newShipping);
-        void Delete(int id);
+        Task DeleteAsync(int id);
     }
 }
