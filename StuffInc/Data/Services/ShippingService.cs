@@ -38,9 +38,11 @@ namespace StuffInc.Data.Services
             return result;
         }
 
-        public Shipping Update(int id, Shipping newShipping)
+        public async Task<Shipping> UpdateAsync(int id, Shipping newShipping)
         {
-            throw new NotImplementedException();
+            _context.Update(newShipping);
+            await _context.SaveChangesAsync();
+            return newShipping;
         }
     }
 }

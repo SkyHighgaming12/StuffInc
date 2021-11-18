@@ -44,8 +44,27 @@ namespace StuffInc.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var shippingDetails = await _service.GetByIdAsync(id);
-            if (shippingDetails == null) return View("Empty");
+            if (shippingDetails == null) return View("NotFound");
             return View(shippingDetails);
+        }
+
+
+        //shipping/edit/1
+        public async Task<IActionResult> Edit(int id)
+        {
+            var shippingDetails = await _service.GetByIdAsync(id);
+            if (shippingDetails == null) return View("NotFound");
+            return View(shippingDetails);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ImageURL,Description")] Shipping shipping)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(shipping);
+            }
+            await _service.UpdateAsync(id, shipping);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

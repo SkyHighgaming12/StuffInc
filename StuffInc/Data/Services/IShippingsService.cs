@@ -11,7 +11,7 @@ namespace StuffInc.Data.Services
         Task<IEnumerable<Shipping>> GetAllAsync();
         Task<Shipping> GetByIdAsync(int id);
         Task AddAsync(Shipping shipping);
-        Shipping Update(int id, Shipping newShipping);
+        Task<Shipping> UpdateAsync(int id, Shipping newShipping);
         void Delete(int id);
     }
 }
