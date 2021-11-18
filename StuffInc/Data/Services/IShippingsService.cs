@@ -1,4 +1,5 @@
-﻿using StuffInc.Models;
+﻿using StuffInc.Data.Base;
+using StuffInc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace StuffInc.Data.Services
 {
-    public interface IShippingsService
+    public interface IShippingsService:IEntityBaseRepository<Shipping>
     {
-        Task<IEnumerable<Shipping>> GetAllAsync();
-        Task<Shipping> GetByIdAsync(int id);
-        Task AddAsync(Shipping shipping);
-        Task<Shipping> UpdateAsync(int id, Shipping newShipping);
-        Task DeleteAsync(int id);
+        
     }
 }
