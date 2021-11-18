@@ -35,6 +35,16 @@ namespace StuffInc.Controllers
             await _service.AddAsync(supplier);
             return RedirectToAction(nameof(Index));
         }
+
+
+        // supplier/details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var supplierDetails = await _service.GetByIdAsync(id);
+            if (supplierDetails == null) return View("NotFound");
+
+            return View(supplierDetails);
+        }
     }
 
     
