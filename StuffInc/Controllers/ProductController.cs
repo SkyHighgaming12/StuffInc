@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StuffInc.Data;
 using StuffInc.Data.Services;
@@ -31,9 +32,13 @@ namespace StuffInc.Controllers
             var productDetail = await _service.GetProductByIdAsync(id);
             return View(productDetail);
         }
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            
+            var productDropdownsData = await _service.GetNewMovieDropdownsValues();
+
+            ViewBag.SupplierId = new SelectList(productDropdownsData.Suppliers, "Id", "Name");
+            ViewBag.WarrantyId = new SelectList(productDropdownsData.Warrenties, "Id", "Name");
+            ViewBag.ShippingId = new SelectList(productDropdownsData.Shippings, "Id", "Name");
 
             return View();
         }
