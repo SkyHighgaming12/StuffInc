@@ -9,5 +9,6 @@ namespace StuffInc.Data.Services
 {
     public interface IProductsService:IEntityBaseRepository<Product>
     {
+        Task<Product> GetProductByIdAsync(int id);
     }
 }

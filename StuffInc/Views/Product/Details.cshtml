@@ -1,0 +1,69 @@
+﻿@model Product
+
+
+
+@{
+    ViewData["Title"] = "Details of Product";
+}
+
+<div class="row">
+
+        <div class="col-md-8 offset-2">
+            <div class="card mb-12">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @Model.Name
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="@Model.ImageURL" alt="@Model.Name" style="max-width: 100%; position: relative; top: 20px; left: 10px;" />
+                    </div>
+                    <div class="col-md-8" style=" min-height: 300px;">
+                        <div class="card-body">
+                            <p class="card-text"><b>Description:  </b>@Model.Description</p>
+                            <p class="card-text"><b>Category:  </b>@Model.ProductCategory</p>
+                            <p class="card-text">
+                                <b>Supplier:  </b>
+                                <a asp-controller="Supplier" asp-action="Details" asp-route-id="@Model.SupplierId">@Model.Supplier.Name</a>
+                            </p>
+                            <p class="card-text">
+                                <b>Warranty:  </b>
+                                <a asp-controller="Warranty" asp-action="Details" asp-route-id="@Model.WarrantyId">@Model.Warranty.Name</a>
+                            </p>
+                            <p class="card-text"><b>Date Added:  </b>@Model.Added.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>Price:  </b>@Model.Price.ToString("c")</p>
+                            <p class="card-text">
+                                <b>Possible Shipping Types</b>
+                                <hr />
+                                <div class="row">
+                                    @foreach (var shipping in Model.Shipping_Products)
+                                    {
+                                        <div class="column text-center">
+                                            <img class="border-info" src="@shipping.Shipping.ImageURL" style=" height: 150px;" />
+                                            <br />
+                                            <a asp-controller="Shipping" asp-action="Details" asp-route-id="@shipping.ShippingId">@shipping.Shipping.Name</a>
+                                        </div>
+                                    }
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                    Back To List
+                                </a>
+                                <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i>Add to Cart (@Model.Price.ToString("c"))</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

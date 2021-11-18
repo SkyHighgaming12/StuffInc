@@ -23,5 +23,13 @@ namespace StuffInc.Controllers
             var allProducts = await _service.GetAllAsync(n => n.Supplier);
             return View(allProducts);
         }
+
+        //products/details/1
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var productDetail = await _service.GetProductByIdAsync(id);
+            return View(productDetail);
+        }
     }
 }
