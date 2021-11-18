@@ -11,6 +11,7 @@ namespace StuffInc.Models
 {
     public class NewProductVm
     {
+        public int Id { get; set; }
         [Display(Description = "Product Name")]
         [Required(ErrorMessage = "Name is Required")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Name Must be between 3 and 50 Characters")]

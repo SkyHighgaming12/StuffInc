@@ -70,5 +70,40 @@ namespace StuffInc.Data.Services
                 .FirstOrDefaultAsync(n => n.Id == id);
             return productDetails;
         }
+
+        public async Task UpdateProductAsync(NewProductVm data)
+        {
+            var dbProduct = await _context.Products.FirstOrDefaultAsync(n => n.Id == data.Id);
+
+            if (dbProduct != null)
+            {
+                dbProduct.Name = data.Name;
+                dbProduct.Description = data.Description;
+                dbProduct.Price = data.Price;
+                dbProduct.SupplierId = data.SupplierId;
+                dbProduct.WarrantyId = data.WarrantyId;
+                dbProduct.Added = data.Added;
+                dbProduct.ImageURL = data.ImageURL;
+                dbProduct.ProductCategory = data.ProductCategory;
+                await _context.SaveChangesAsync();
+            }
+
+            var existingShippingsDb = _context.Shipping_Products.Where(n => n.ProductId == data.Id).ToList();
+            _context.Shipping_Products.RemoveRange(existingShippingsDb);
+            await _context.SaveChangesAsync();
+
+
+            foreach (var shippingId in data.ShippingIds)
+            {
+                var newShippingProduct = new Shipping_Product()
+                {
+                    ProductId = data.Id,
+                    ShippingId = shippingId
+                };
+                await _context.Shipping_Products.AddAsync(newShippingProduct);
+
+            }
+            await _context.SaveChangesAsync();
+        }
     }
 }
