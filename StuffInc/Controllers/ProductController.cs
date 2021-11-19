@@ -113,6 +113,42 @@ namespace StuffInc.Controllers
         }
 
 
+        public async Task<IActionResult> Delete(int id)
+        {
 
+            var productDetails = await _service.GetProductByIdAsync(id);
+            if (productDetails == null) return View("NotFound");
+
+            var response = new NewProductVm()
+            {
+                Id = productDetails.Id,
+                Name = productDetails.Name,
+                Price = productDetails.Price,
+                Description = productDetails.Description,
+                ImageURL = productDetails.ImageURL,
+                ProductCategory = productDetails.ProductCategory,
+                SupplierId = productDetails.SupplierId,
+                WarrantyId = productDetails.WarrantyId,
+                ShippingIds = productDetails.Shipping_Products.Select(n => n.ShippingId).ToList()
+
+            };
+
+            var productDropdownsData = await _service.GetNewMovieDropdownsValues();
+            ViewBag.SupplierId = new SelectList(productDropdownsData.Suppliers, "Id", "Name");
+            ViewBag.WarrantyId = new SelectList(productDropdownsData.Warrenties, "Id", "Name");
+            ViewBag.ShippingId = new SelectList(productDropdownsData.Shippings, "Id", "Name");
+
+            return View(response);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleeteConfirmed(int id)
+        {
+
+            await _service.DeleteAsync(id);
+            
+            return RedirectToAction(nameof(Index));
+
+        }
     }
 }
