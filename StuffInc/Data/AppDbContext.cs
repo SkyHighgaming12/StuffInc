@@ -37,6 +37,11 @@ namespace StuffInc.Data
         public DbSet<Warranty> Warranties { get; set; }
 
 
+        //orders
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
+
 
     }
 }
