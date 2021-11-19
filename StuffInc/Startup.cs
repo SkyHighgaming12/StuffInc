@@ -43,6 +43,8 @@ namespace StuffInc
             services.AddScoped<IWarrantyService, WarrantyService>();
             services.AddScoped<ISuppliersService, SuppliersService>();
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<IOrdersService, OrdersService>();
+
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
