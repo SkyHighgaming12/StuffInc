@@ -22,6 +22,13 @@ namespace StuffInc.Controllers
             _ordersService = ordersService;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            string userId = "";
+            var orders = await _ordersService.GetOrdersByUserIdAsync(userId);
+            return View(orders);
+        }
+
 
         public IActionResult ShoppingCart()
         {
