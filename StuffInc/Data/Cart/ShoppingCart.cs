@@ -19,6 +19,29 @@ namespace StuffInc.Data.Cart
             _context = context;
         }
 
+
+        public void AddItemToCart(Product product)
+        {
+            var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(n => n.Product.Id == product.Id && n.ShoppingCartId == ShoppingCartId);
+            if(shoppingCartItem == null)
+            {
+                shoppingCartItem = new ShoppingCartItem()
+                {
+                    ShoppingCartId = ShoppingCartId,
+                    Product = product,
+                    Amount = 1
+                };
+                _context.ShoppingCartItems.Add(shoppingCartItem);
+            }
+            else
+            {
+                shoppingCartItem.Amount++;
+
+            }
+            _context.SaveChanges();
+        }
+
+
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
             return ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).Include(n => n.Product).ToList());
