@@ -21,7 +21,7 @@ namespace StuffInc.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult ShoppingCart()
         {
 
             var items = _shoppingCart.GetShoppingCartItems();
@@ -34,6 +34,17 @@ namespace StuffInc.Controllers
             };
 
             return View(response);
+        }
+
+        public async Task<RedirectToActionResult> AddItemToShoppingCart(int id)
+        {
+            var item = await _productsService.GetProductByIdAsync(id);
+
+            if(item != null)
+            {
+                _shoppingCart.AddItemToCart(item);
+            }
+            return RedirectToAction(nameof(ShoppingCart));
         }
     }
 }
