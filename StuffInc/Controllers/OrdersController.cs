@@ -13,11 +13,13 @@ namespace StuffInc.Controllers
     {
         private readonly IProductsService _productsService;
         private readonly ShoppingCart _shoppingCart;
+        private readonly IOrdersService _ordersService;
 
-        public OrdersController(IProductsService productsService, ShoppingCart shoppingCart)
+        public OrdersController(IProductsService productsService, ShoppingCart shoppingCart, IOrdersService ordersService)
         {
             _productsService = productsService;
             _shoppingCart = shoppingCart;
+            _ordersService = ordersService;
         }
 
 
@@ -57,6 +59,17 @@ namespace StuffInc.Controllers
                 _shoppingCart.RemoveItemFromCart(item);
             }
             return RedirectToAction(nameof(ShoppingCart));
+        }
+
+        public async Task<IActionResult> CompleteOrder()
+        {
+            var items = _shoppingCart.GetShoppingCartItems();
+            string userId = "";
+            string userEmailAddress = "";
+
+            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
+            await _shoppingCart.ClearShoppingCartAsync();
+            return View("OrderComplete");
         }
     }
 }
