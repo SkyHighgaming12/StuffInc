@@ -5,6 +5,7 @@ using StuffInc.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace StuffInc.Controllers
@@ -24,8 +25,9 @@ namespace StuffInc.Controllers
 
         public async Task<IActionResult> Index()
         {
-            string userId = "";
-            var orders = await _ordersService.GetOrdersByUserIdAsync(userId);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userRole = User.FindFirstValue(ClaimTypes.Role);
+            var orders = await _ordersService.GetOrdersByUserIdAndRoleAsync(userId, userRole);
             return View(orders);
         }
 
@@ -71,8 +73,8 @@ namespace StuffInc.Controllers
         public async Task<IActionResult> CompleteOrder()
         {
             var items = _shoppingCart.GetShoppingCartItems();
-            string userId = "";
-            string userEmailAddress = "";
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
 
             await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
             await _shoppingCart.ClearShoppingCartAsync();
