@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StuffInc.Data;
+using StuffInc.Data.Static;
 using StuffInc.Data.ViewModels;
 using StuffInc.Models;
 using System;
@@ -59,6 +60,40 @@ namespace StuffInc.Controllers
             return View(response);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterVm registerVm)
+        {
+            if (!ModelState.IsValid) return View(registerVm);
+            var user = await _userManager.FindByEmailAsync(registerVm.EmailAddress);
+            if(user != null)
+            {
+                TempData["Error"] = "This email is already in use";
+                return View(registerVm);
+            }
+            var newUser = new ApplicationUser()
+            {
+                Name = registerVm.Name,
+                Email = registerVm.EmailAddress,
+                UserName = registerVm.EmailAddress
+            };
+            var newUserResponse = await _userManager.CreateAsync(newUser, registerVm.Password);
+
+            if (newUserResponse.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+            }
+            return View("RegisterCompleted");
+
+
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
 
     }
