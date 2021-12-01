@@ -79,10 +79,14 @@ namespace StuffInc.Controllers
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVm.Password);
 
             if (newUserResponse.Succeeded)
-            {
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+
+            if (!newUserResponse.Succeeded)
+            {
+                return View("Register");
             }
-            return View("RegisterCompleted");
+
+                return View("RegisterCompleted");
 
 
 

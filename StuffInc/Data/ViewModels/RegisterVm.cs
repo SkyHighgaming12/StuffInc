@@ -18,6 +18,7 @@ namespace StuffInc.Data.ViewModels
         
         [Required]
         [DataType(DataType.Password)]
+        [StringLength(50, MinimumLength = 6, ErrorMessage = "Password Must be between 6 and 50 Characters")]
         public string Password { get; set; }
 
         [Display(Name = "Confrim Password")]

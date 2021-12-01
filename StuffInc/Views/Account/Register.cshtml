@@ -31,6 +31,16 @@
                         <span asp-validation-for="EmailAddress" class="text-danger"></span>
                     </div>
                     <div class="form-group">
+                        <p>Password Must Contain at least:</p>
+                        <ul>
+                            <li>Minimum 6 Characters</li>
+                            <li>1 Capital Letter</li>
+                            <li>1 Lower Case Letter</li>
+                            <li>1 Number</li>
+                            <li>1 Special Character</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
                         <label asp-for="Password" class="control-label"></label>
                         <input asp-for="Password" class="form-control" />
                         <span asp-validation-for="Password" class="text-danger"></span>

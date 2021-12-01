@@ -25,17 +25,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Product" asp-action="Index"><i class="bi bi-box"></i> Products</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bi bi-gear"></i>Management
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-controller="Supplier" asp-action="Index"><i class="bi bi-building"> Suppliers</i></a>
-                                <a class="dropdown-item" asp-controller="Warranty" asp-action="Index"><i class="bi bi-chat-right-text"> Warrenties</i></a>
-                                <a class="dropdown-item" asp-controller="Shipping" asp-action="Index"><i class="bi bi-truck"> Shipping Types</i></a>
-                            </div>
 
-                        </li>
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-gear"></i>Management
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Supplier" asp-action="Index"><i class="bi bi-building"> Suppliers</i></a>
+                                    <a class="dropdown-item" asp-controller="Warranty" asp-action="Index"><i class="bi bi-chat-right-text"> Warrenties</i></a>
+                                    <a class="dropdown-item" asp-controller="Shipping" asp-action="Index"><i class="bi bi-truck"> Shipping Types</i></a>
+                                </div>
+
+                            </li>
+                        }
+
+
+
+
                     </ul>
                     <form class="form-inline my-2 my-lg-0" asp-controller="Product" asp-action="Filter" style="padding-right: 25px;">
                         <input name="searchString" type="text" class="form-control" placeholder="Search for an Item..." />
