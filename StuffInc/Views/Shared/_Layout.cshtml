@@ -43,11 +43,14 @@
                     </form>
 
                     <ul class="navbar-nav">
-                        @await Component.InvokeAsync("ShoppingCartSummary") 
+                        @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
 
                     <a class="btn btn-outline-success my-2 my-sm-0" asp-controller="Account" asp-action="Login">
                         <i class="bi bi-box-arrow-in-right"> Log In</i>
+                    </a>
+                    <a class="btn btn-outline-primary my-2 my-sm-0" asp-controller="Account" asp-action="Register">
+                        <i class="bi bi-person-plus"> Register</i>
                     </a>
 
 

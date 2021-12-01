@@ -53,7 +53,11 @@ namespace StuffInc.Controllers
             TempData["Error"] = "Wrong Email or password, Please Try Again";
             return View(loginVm);
         }
-
+        public IActionResult Register()
+        {
+            var response = new RegisterVm();
+            return View(response);
+        }
 
 
 
