@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StuffInc.Data.Cart;
 using StuffInc.Data.Services;
 using StuffInc.Data.ViewModels;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace StuffInc.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IProductsService _productsService;
@@ -22,7 +24,6 @@ namespace StuffInc.Controllers
             _shoppingCart = shoppingCart;
             _ordersService = ordersService;
         }
-
         public async Task<IActionResult> Index()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

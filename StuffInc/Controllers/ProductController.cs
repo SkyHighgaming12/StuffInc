@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StuffInc.Data;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace StuffInc.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductsService _service;
@@ -19,7 +21,7 @@ namespace StuffInc.Controllers
         {
             _service = service;
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allProducts = await _service.GetAllAsync(n => n.Supplier);
@@ -27,7 +29,7 @@ namespace StuffInc.Controllers
         }
 
         //products/details/1
-
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var productDetail = await _service.GetProductByIdAsync(id);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StuffInc.Data;
 using StuffInc.Data.Services;
@@ -10,15 +11,17 @@ using System.Threading.Tasks;
 
 namespace StuffInc.Controllers
 {
+    [Authorize]
     public class WarrantyController : Controller
     {
+        
         private readonly IWarrantyService _service;
 
         public WarrantyController(IWarrantyService service)
         {
             _service = service;
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allWarranties = await _service.GetAllAsync();
@@ -26,6 +29,7 @@ namespace StuffInc.Controllers
         }
 
         // warranty/details/1
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var warrantyDetails = await _service.GetByIdAsync(id);

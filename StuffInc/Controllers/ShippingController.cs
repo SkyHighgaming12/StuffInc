@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StuffInc.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StuffInc.Controllers
 {
+    [Authorize]
     public class ShippingController : Controller
     {
         private readonly IShippingsService _service;
@@ -17,7 +19,7 @@ namespace StuffInc.Controllers
         {
             _service = service;
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var data = await _service.GetAllAsync();
@@ -41,6 +43,7 @@ namespace StuffInc.Controllers
 
 
         //Shipping/details/1
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var shippingDetails = await _service.GetByIdAsync(id);
