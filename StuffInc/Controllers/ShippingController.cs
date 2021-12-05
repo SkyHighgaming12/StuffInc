@@ -7,10 +7,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using StuffInc.Models;
 using Microsoft.AspNetCore.Authorization;
+using StuffInc.Data.Static;
 
 namespace StuffInc.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class ShippingController : Controller
     {
         private readonly IShippingsService _service;

@@ -110,5 +110,11 @@ namespace StuffInc.Controllers
         }
 
 
+
+
+        public IActionResult AccessDenied(string ReturnUrl)
+        {
+            return View();
+        }
     }
 }

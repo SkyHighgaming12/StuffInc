@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StuffInc.Data;
 using StuffInc.Data.Services;
+using StuffInc.Data.Static;
 using StuffInc.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace StuffInc.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class ProductController : Controller
     {
         private readonly IProductsService _service;

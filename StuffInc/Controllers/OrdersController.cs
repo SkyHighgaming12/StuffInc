@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StuffInc.Data.Cart;
 using StuffInc.Data.Services;
+using StuffInc.Data.Static;
 using StuffInc.Data.ViewModels;
 using System;
 using System.Collections.Generic;

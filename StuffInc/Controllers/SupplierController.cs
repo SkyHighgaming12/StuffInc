@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using StuffInc.Data.Static;
 
 namespace StuffInc.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class SupplierController : Controller
     {
         private readonly ISuppliersService _service;
