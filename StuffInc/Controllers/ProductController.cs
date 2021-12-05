@@ -28,7 +28,19 @@ namespace StuffInc.Controllers
             var allProducts = await _service.GetAllAsync(n => n.Supplier);
             return View(allProducts);
         }
+        [AllowAnonymous]
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allProducts = await _service.GetAllAsync(n => n.Supplier);
 
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var filteredResult = allProducts.Where(n => n.Name.Contains(searchString) || n.Description.Contains(searchString)).ToList();
+                return View("Index", filteredResult);
+            }
+
+            return View("Index", allProducts);
+        }
         //products/details/1
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
