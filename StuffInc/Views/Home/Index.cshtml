@@ -2,27 +2,29 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center welcome">
-    <h1 class="display-4 font-weight-bolder">Welcome to Stuff Inc.</h1>
-    <h3 class="font-weight-bold">The Best Place to Get Your Stuff</h3>
-    <p>Check out our wide selection of products for any occasion!</p>
-    <a class="btn btn-outline-info" asp-controller="Product" asp-action="Index"><i class="bi bi-box" ></i> Products</a>
+<div class="text-center">
+    <h1 class="display-4 font-weight-bolder  welcome ">Welcome to Stuff Inc.</h1>
+    <h3 class="font-weight-bold  welcome ">The Best Place to Get Your Stuff</h3>
+    <p class="product size">Check out our wide selection of products for any occasion!</p>
+    <a class="btn btn-outline-info product" asp-controller="Product" asp-action="Index"><i class="bi bi-box-seam"></i> Products</a>
 </div>
 <hr />
 <div class="row">
     <div class="col-md-8 offset-2">
-        <div>
+        <div class="supplier">
             <p>Check out our Suppliers...</p>
             <a class="btn btn-outline-dark" asp-controller="Supplier" asp-action="Index"><i class="bi bi-building"> Suppliers</i></a>
         </div>
-        <div class="text-center">
+        <div class="text-center warrenty">
             <p>Or maybe our possible warranty options...</p>
             <a class="btn-warning btn" asp-controller="Warranty" asp-action="Index"><i class="bi bi-chat-right-text"> Warrenties</i></a>
         </div>
-        <div class="float-right">
+        <div class="float-right shipping">
             <p>How about the different ways <br />you may recieve your package!</p>
             <a class="btn btn-outline-danger" asp-controller="Shipping" asp-action="Index"><i class="bi bi-truck"> Shipping Types</i></a>
         </div>
-        
+
     </div>
 </div>
+<hr />
+<br />

@@ -79,6 +79,16 @@ body {
 .welcome {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 2em;
+    animation: backInDown;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-delay: 0;
+}
+.product {
+    animation: bounceIn;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-delay: 3s;
 }
 .border-me {
     border-radius: 50%;
@@ -87,6 +97,29 @@ body {
 .text-center-me{
     text-align: center;
 }
+.supplier {
+    animation: rotateInUpLeft;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-delay: 6s;
+}
+
+
+.warrenty {
+    animation: fadeInUp;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-delay: 8s;
+}
+
+
+.shipping {
+    animation: lightSpeedInRight;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-delay: 10s;
+}
+
 
 
 
