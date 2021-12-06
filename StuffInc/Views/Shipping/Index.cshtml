@@ -24,7 +24,7 @@
                 {
                 <tr>
                     <td class="align-middle">
-                        <img class="rounded-circle" src="@item.ImageURL" alt="@item.Name" style="max-width: 150px;" />
+                        <img class="rounded-circle border-me" src="@item.ImageURL" alt="@item.Name" style="width: 150px; height: 150px" />
                     </td>
                     <td class="align-middle">
                         @Html.DisplayFor(modelItem => item.Name)
@@ -34,7 +34,7 @@
                     </td>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <td class="align-middle">
+                        <td class="align-middle" style="width: 350px;">
                             <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Edit</a> |
                             <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i> Details</a> |
                             <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i> Delete</a>
@@ -48,4 +48,4 @@
     </div>
 </div>
 
-@await Html.PartialAsync("_CreateItem", "Shipping"); 
+@await Html.PartialAsync("_CreateItem", "Shipping")

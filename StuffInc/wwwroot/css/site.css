@@ -59,13 +59,34 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #D8E1FF;
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #96CDFF;
 }
+
+.nav-color {
+    background-color: #DBBADD !important;
+}
+.welcome {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2em;
+}
+.border-me {
+    border-radius: 50%;
+    border: 6px solid red;
+}
+.text-center-me{
+    text-align: center;
+}
+
+
+

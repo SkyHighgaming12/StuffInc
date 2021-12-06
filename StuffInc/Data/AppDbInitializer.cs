@@ -181,7 +181,7 @@ namespace StuffInc.Data
                             Description = "If your interest mostly revolves around off-roading and going on adventures, then the 4Runner is a great buy.",
                             Price = 50000,
                             Added = DateTime.Now,
-                            ProductCategory = ProductCategory.Cars,
+                            ProductCategory = ProductCategory.Automotive,
                             WarrantyId = 5,
                             SupplierId = 4
                         },

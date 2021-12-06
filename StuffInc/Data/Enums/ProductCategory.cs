@@ -10,7 +10,12 @@ namespace StuffInc.Data
         Food = 1,
         Clothing,
         Electronics,
-        Cars,
-        Toys
+        Automotive,
+        Toys,
+        Games,
+        Beauty,
+        Books,
+        Household,
+        Other
     }
 }
