@@ -56,12 +56,17 @@ button.accept-policy {
 html {
   position: relative;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     background-color: #D8E1FF;
+}
+
+table {
+    background-color: #6CF0D9;
 }
 
 .footer {
@@ -122,4 +127,18 @@ body {
 
 
 
+.search {
+    animation: heartBeat;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
 
+
+.imgg{
+    max-width: 110%;
+    min-width: 230px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+    text-align: center;
+}

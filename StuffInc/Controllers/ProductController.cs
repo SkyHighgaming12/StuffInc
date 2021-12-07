@@ -26,7 +26,7 @@ namespace StuffInc.Controllers
         public async Task<IActionResult> Index()
         {
             var allProducts = await _service.GetAllAsync(n => n.Supplier);
-            return View(allProducts);
+            return View(allProducts.OrderBy(n => n.Name));
         }
         [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString)
@@ -35,10 +35,11 @@ namespace StuffInc.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filteredResult = allProducts.Where(n => n.Name.ToLower().Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower())).ToList();
+                ViewBag.Searchs = searchString;
+                var filteredResult = allProducts.Where(n => n.Name.ToLower().Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower()) || n.ProductCategory.ToString().ToLower().Contains(searchString.ToLower())).ToList();
                 return View("Index", filteredResult);
             }
-
+            
             return View("Index", allProducts);
         }
         //products/details/1

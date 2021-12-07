@@ -8,13 +8,21 @@
 <div class="row">
     <div class="col-md-8 offset-2">
         <p>
-            <h4>List Of All Your Orders</h4>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <h4>List Of all Customers Orders</h4>
+            }
+            else
+            {
+                <h4>List Of All Your Orders</h4>
+            }
+
         </p>
         <table class="table">
             <thead>
                 <tr>
                     <th>Order Id</th>
-                    <th>Items</th>
+                    <th class="text-center">Items</th>
                     <th>Total</th>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
@@ -34,7 +42,7 @@
                             {
                                 <li>
                                     <div class="alert alert-info" role="alert">
-                                        <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c")] - @item.Product.Name
+                                        <span class="badge bg-info">@item.Amount</span> [@item.Price.ToString("c")] - @item.Product.Name
                                     </div>
                                 </li>
                             }
