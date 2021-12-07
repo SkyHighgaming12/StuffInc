@@ -36,7 +36,7 @@ namespace StuffInc.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
                 ViewBag.Searchs = searchString;
-                var filteredResult = allProducts.Where(n => n.Name.ToLower().Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower()) || n.ProductCategory.ToString().ToLower().Contains(searchString.ToLower())).ToList();
+                var filteredResult = allProducts.Where(n => n.Name.ToLower().Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower()) || n.ProductCategory.ToString().ToLower().Contains(searchString.ToLower()) || n.Supplier.Name.ToString().ToLower().Contains(searchString.ToLower())).ToList();
                 return View("Index", filteredResult);
             }
             

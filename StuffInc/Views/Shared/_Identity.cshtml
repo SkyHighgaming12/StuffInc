@@ -16,7 +16,7 @@
 else
 {
     <div class="dropdown">
-        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-success text-white dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-badge"></i> Hello @UserManager.GetUserName(User)
         </button>
         <ul class="dropdown-menu" aria-labeledby="profile-btn">
@@ -32,7 +32,7 @@ else
     </div>
     <span style="padding: 5px;"></span>
     <form asp-controller="Account" asp-action="Logout">
-        <button class="btn btn-outline-danger my-2 my-sm-0">
+        <button class="btn btn-danger text-white my-2 my-sm-0">
             <i class="bi bi-box-arrow-right"></i> Log Out
         </button>
     </form>
